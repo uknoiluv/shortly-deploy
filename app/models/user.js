@@ -1,10 +1,18 @@
 var db = require('../config');
 var bcrypt = require('bcrypt-nodejs');
 var Promise = require('bluebird');
+var Schema = db.Schema;
+var ObjectId = db.ObjectId;
+console.log(db.Schema);
 
-var User = db.Model.extend({
-  tableName: 'users',
-  hasTimestamps: true,
+var User = new Schema({
+  id : ObjectId,
+  username : {type: String, unqiue: true},
+  password : {type: String},
+  createdAt : {type : Date, default: Date.now}
+});
+
+User.methods = {
   initialize: function(){
     this.on('creating', this.hashPassword);
   },
@@ -20,6 +28,9 @@ var User = db.Model.extend({
         this.set('password', hash);
       });
   }
-});
+};
+// var User = db.Model.extend({
+//   tableName: 'users',
+//   hasTimestamps: true,
 
 module.exports = User;
