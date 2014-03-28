@@ -31,3 +31,5 @@ node_modules
 
 #nodemon
 nodemon.json
+
+build

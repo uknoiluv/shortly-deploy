@@ -1,12 +1,12 @@
 var connectionString = process.env.MONGOCON;
 var path = require('path');
 var mongoose = require('mongoose');
-mongoose.createConnection(connectionString);
-var db = {
-  Schema: mongoose.Schema,
-  ObjectId: mongoose.Schema.ObjectId
-};
-console.log(exports.Schema);
+mongoose.connect(connectionString);
+var db = mongoose.connection;
+db.once('open', function(){
+  console.log('connected to db');
+});
+//console.log(exports.Schema);
 
 module.exports = db;
   // client: 'sqlite3',
