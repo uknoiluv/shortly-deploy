@@ -1,4 +1,5 @@
-var connectionString = process.env.MONGOCON;
+//var connectionString = process.env.MONGOCON;
+var connectionString = process.env.CUSTOMCONNSTR_MONGOLAB_URI;
 var path = require('path');
 var mongoose = require('mongoose');
 mongoose.connect(connectionString);
