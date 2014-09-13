@@ -24,7 +24,11 @@ module.exports = function(grunt) {
     },
 
     concat: {
-
+      dist: {
+        // src: ['public/client/*.js','public/lib/*.js'],
+        src: 'public/production.js',
+        dest: 'public/production.min.js'
+      }
     },
 
     uglify: {
@@ -124,7 +128,7 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('deploy', [
-    'uglify'
+    'concat', 'uglify'
   ]);
 
 
